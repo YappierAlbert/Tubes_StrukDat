@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1735358844 source:d:\kuliah\tubes\main.cpp
+	<iostream>
+	"graf.h"
+
+1735357228 d:\kuliah\tubes\graf.h
+	<iostream>
+
+1735359966 source:d:\kuliah\tubes\graf.cpp
+	"graf.h"
+
