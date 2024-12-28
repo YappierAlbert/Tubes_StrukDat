@@ -148,20 +148,15 @@ void shortestRoute(graph &G, string startVertex) {
         cout << "Start vertex " << startVertex << " not found!" << endl;
         return;
     }
-
-    cout << "Starting route from " << startVertex << ":" << endl;
-
     string mark[7];
     int i = 0;
-
+    cout << startVertex << " -> ";
     while (true) {
         mark[i] = currentVertex->idVertex;
         i++;
-
         adrEdge closestEdge = NULL;
         adrEdge e = firstEdge(currentVertex);
-        int minDistance = e->jarak;
-
+        int minDistance = INT_MAX;
         while (e != NULL) {
             bool alreadyVisited = false;
             for (int j = 0; j < i; j++) {
@@ -170,28 +165,99 @@ void shortestRoute(graph &G, string startVertex) {
                     break;
                 }
             }
-
-            if ( e->hidup && e->jarak < minDistance) {
+            if (!alreadyVisited && e->hidup && e->jarak <= minDistance) {
                 closestEdge = e;
                 minDistance = e->jarak;
             }
-
             e = nextEdge(e);
         }
-
         if (closestEdge == NULL) {
-            cout << "No more reachable vertices from " << currentVertex->idVertex << "." << endl;
+            cout << "Set Up Turtle." << endl;
             break;
         }
-
-        cout << "  -> To " << closestEdge->destVertexID
-             << " (Distance: " << closestEdge->jarak << ")" << endl;
-
+        cout << closestEdge->destVertexID << " -> ";
         closestEdge->hidup = false;
         currentVertex = searchVertex(G, closestEdge->destVertexID);
     }
-
-    cout << "Route completed." << endl;
+    cout << "Rute Selesai." << endl;
 }
 
+void highestXp(graph &G, string startVertex) {
+    adrVertex currentVertex = searchVertex(G, startVertex);
+    if (currentVertex == NULL) {
+        cout << "Start vertex " << startVertex << " not found!" << endl;
+        return;
+    }
+    string mark[7];
+    int i = 0;
+    cout << startVertex << " -> ";
+    while (true) {
+        mark[i] = currentVertex->idVertex;
+        i++;
+        adrEdge closestEdge = NULL;
+        adrEdge e = firstEdge(currentVertex);
+        int maxXp = INT_MIN;
+        while (e != NULL) {
+            bool alreadyVisited = false;
+            for (int j = 0; j < i; j++) {
+                if (mark[j] == e->destVertexID) {
+                    alreadyVisited = true;
+                    break;
+                }
+            }
+            if (!alreadyVisited && e->hidup && e->xp >= maxXp) {
+                closestEdge = e;
+                maxXp = e->xp;
+            }
+            e = nextEdge(e);
+        }
+        if (closestEdge == NULL) {
+            cout << "Set Up Turtle." << endl;
+            break;
+        }
+        cout << closestEdge->destVertexID << " -> ";
+        closestEdge->hidup = false;
+        currentVertex = searchVertex(G, closestEdge->destVertexID);
+    }
+    cout << "Rute Selesai." << endl;
+}
 
+void highestGold(graph &G, string startVertex) {
+    adrVertex currentVertex = searchVertex(G, startVertex);
+    if (currentVertex == NULL) {
+        cout << "Start vertex " << startVertex << " not found!" << endl;
+        return;
+    }
+    string mark[7];
+    int i = 0;
+    cout << startVertex << " -> ";
+    while (true) {
+        mark[i] = currentVertex->idVertex;
+        i++;
+        adrEdge closestEdge = NULL;
+        adrEdge e = firstEdge(currentVertex);
+        int maxGold = INT_MIN;
+        while (e != NULL) {
+            bool alreadyVisited = false;
+            for (int j = 0; j < i; j++) {
+                if (mark[j] == e->destVertexID) {
+                    alreadyVisited = true;
+                    break;
+                }
+            }
+            if (!alreadyVisited && e->hidup && e->gold >= maxGold) {
+                closestEdge = e;
+                maxGold = e->gold;
+            }
+            e = nextEdge(e);
+        }
+        if (closestEdge == NULL) {
+            cout << "Set Up Turtle." << endl;
+            break;
+        }
+        cout << closestEdge->destVertexID << " -> ";
+        closestEdge->hidup = false;
+        currentVertex = searchVertex(G, closestEdge->destVertexID);
+    }
+    cout << "Rute Selesai." << endl;
+}

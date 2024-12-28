@@ -52,5 +52,8 @@ void initEdge(graph &G);
 
 void shortestRoute(graph &G, string startVertex);
 
+void highestXp(graph &G, string startVertex);
+
+void highestGold(graph &G, string startVertex);
 
 #endif // GRAF_H_INCLUDED
