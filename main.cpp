@@ -30,6 +30,7 @@ int main() {
         if(pilih == 1){
             showVertex(G);
         }else if(pilih == 2){
+            initEdge(G);
             cout << "Masukkan Titik Awal Anda : ";
             cin >> input;
             shortestRoute(G,input);
